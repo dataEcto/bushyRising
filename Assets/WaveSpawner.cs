@@ -23,7 +23,7 @@ public class WaveSpawner : MonoBehaviour
     private int nextWave = 0;
 
     public float timeBetweenWaves = 5f;
-    public float waveCountdown = 0;
+    public float waveCountdown;
 
     //Float to check WHEN to search for enemies on screen rather than every fram
     private float searchCountdown = 1;
@@ -45,6 +45,7 @@ public class WaveSpawner : MonoBehaviour
             {
                 //Begin new round
                 Debug.Log("Wave COMPLETE!");
+                return;
 
             }
             else

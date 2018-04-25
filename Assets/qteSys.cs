@@ -21,7 +21,11 @@ public class qteSys : MonoBehaviour {
     //preventing further button presses
     public int countingDown;
 
-
+    /// <summary>
+    /// NOTE! Maybe you can still use TextMeshPro?
+    /// Since the problem for you since to be that you forgot to put the text object
+    /// in the public variables. Oops!
+    /// </summary>
     // Update is called once per frame
     void Update () {
 		

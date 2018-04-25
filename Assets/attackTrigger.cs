@@ -5,7 +5,7 @@ using UnityEngine;
 public class attackTrigger : MonoBehaviour
 {
 
-    public float dmg = 0.5f;
+    float dmg = 1;
 
     void OnTriggerEnter2D(Collider2D col)
     {

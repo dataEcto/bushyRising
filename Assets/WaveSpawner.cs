@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveSpawner : MonoBehaviour {
+public class WaveSpawner : MonoBehaviour
+{
 
-    public enum SpawnState {SPAWNING, WAITING, COUNTING};
+    public enum SpawnState { SPAWNING, WAITING, COUNTING };
 
     //Allows us to change the values of the instances of a class in the Inspector
-    [System.Serializable] 
+    [System.Serializable]
     public class Wave
     {
         public string name;
@@ -24,6 +25,9 @@ public class WaveSpawner : MonoBehaviour {
     public float timeBetweenWaves = 5f;
     public float waveCountdown = 0;
 
+    //Float to check WHEN to search for enemies on screen rather than every fram
+    private float searchCountdown = 1;
+
     private SpawnState state = SpawnState.COUNTING;
 
     void Start()
@@ -33,6 +37,23 @@ public class WaveSpawner : MonoBehaviour {
 
     private void Update()
     {
+        //Creating a spawn based on when the enemies are all gone. 
+        if (state == SpawnState.WAITING)
+        {
+            //Has the player killed all the enemies?
+            if (!EnemyIsAlive())
+            {
+                //Begin new round
+                Debug.Log("Wave COMPLETE!");
+
+            }
+            else
+            {
+                return;
+            }
+
+        }
+
         //If its time to start spawing...
         if (waveCountdown <= 0)
         {
@@ -50,12 +71,29 @@ public class WaveSpawner : MonoBehaviour {
             }
         }
 
-       
+
+    }
+
+    bool EnemyIsAlive()
+    {
+        searchCountdown -= Time.deltaTime;
+        if (searchCountdown <= 0f)
+        {
+            searchCountdown = 1f;
+            if (GameObject.FindGameObjectsWithTag("enemy").Length == 0)
+            {
+                return false;
+            }
+
+        }
+
+        return true;
     }
 
     //We want to be able to wait for a certain amount of seconds inside of the method
     IEnumerator SpawnWave(Wave _wave)
     {
+        Debug.Log("Spawning Wave: " + _wave.name);
         //Spawning State
         state = SpawnState.SPAWNING;
 
@@ -76,6 +114,9 @@ public class WaveSpawner : MonoBehaviour {
     {
         //spawn enemy
         Debug.Log("Spawnin");
+        Instantiate(_enemy, transform.position, transform.rotation);
+
     }
 }
+
 

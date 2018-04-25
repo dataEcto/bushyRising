@@ -34,7 +34,7 @@ public class qteSys : MonoBehaviour {
             if (qteGen == 1)
             {
                 waitingForKey = 1;
-                displayBox.GetComponent<Text> ().text = "[E]";
+                displayBox.GetComponent<Text>().text = "[E]";
             }
 
             if(qteGen == 2)

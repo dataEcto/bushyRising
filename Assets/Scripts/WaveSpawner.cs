@@ -22,7 +22,7 @@ public class WaveSpawner : MonoBehaviour
     //Stores the index 
     private int nextWave = 0;
 
-    public float timeBetweenWaves = 5f;
+    public float timeBetweenWaves = 3f;
     public float waveCountdown;
 
     //Float to check WHEN to search for enemies on screen rather than every fram
@@ -35,25 +35,8 @@ public class WaveSpawner : MonoBehaviour
         waveCountdown = timeBetweenWaves;
     }
 
-    private void Update()
+    void Update()
     {
-        //Creating a spawn based on when the enemies are all gone. 
-        if (state == SpawnState.WAITING)
-        {
-            //Has the player killed all the enemies?
-            if (!EnemyIsAlive())
-            {
-                //Begin new round
-                Debug.Log("Wave COMPLETE!");
-                return;
-
-            }
-            else
-            {
-                return;
-            }
-
-        }
 
         //If its time to start spawing...
         if (waveCountdown <= 0)
@@ -66,13 +49,60 @@ public class WaveSpawner : MonoBehaviour
                 StartCoroutine(SpawnWave(waves[nextWave]));
             }
 
-            else
-            {
-                waveCountdown -= Time.deltaTime;
-            }
+           
         }
 
+        else
+        {
+            //Debug.Log("Counting Down");
+            waveCountdown -= Time.deltaTime;
+        }
 
+        //Creating a spawn based on when the enemies are all gone. 
+        if (state == SpawnState.WAITING)
+        {
+            //Has the player killed all the enemies?
+            if (!EnemyIsAlive())
+            {
+                //Begin new round
+                WaveCompleted();
+        
+
+            }
+
+            else
+            {
+                return;
+            }
+
+        }
+
+        
+
+
+    }
+
+    void WaveCompleted()
+    {
+        Debug.Log("Wave COMPLETE!");
+
+        state = SpawnState.COUNTING;
+        waveCountdown = timeBetweenWaves;
+
+        if  (nextWave + 1 > waves.Length - 1)
+        {
+            nextWave = 0;
+            Debug.Log("All Waves Finished. Looping...");
+            //I can do other stuff here, such as loading new scenes
+
+        }
+
+        else
+        {
+            nextWave++;
+        }
+
+        
     }
 
     bool EnemyIsAlive()
@@ -114,7 +144,7 @@ public class WaveSpawner : MonoBehaviour
     void SpawnEnemy(Transform _enemy)
     {
         //spawn enemy
-        Debug.Log("Spawnin");
+        Debug.Log("Spawning");
         Instantiate(_enemy, transform.position, transform.rotation);
 
     }

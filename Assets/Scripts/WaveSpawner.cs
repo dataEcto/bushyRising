@@ -25,8 +25,8 @@ public class WaveSpawner : MonoBehaviour
     public float timeBetweenWaves = 3f;
     public float waveCountdown;
 
-    //Float to check WHEN to search for enemies on screen rather than every fram
-    private float searchCountdown = 1;
+    //Float to check WHEN to search for enemies on screen rather than every frame
+    private float searchCountdown = 1f;
 
     private SpawnState state = SpawnState.COUNTING;
 
@@ -37,6 +37,24 @@ public class WaveSpawner : MonoBehaviour
 
     void Update()
     {
+
+        //Creating a spawn based on when the enemies are all gone. 
+        if (state == SpawnState.WAITING)
+        {
+            //Has the player killed all the enemies?
+            if (!EnemyIsAlive())
+            {
+                //Begin new round
+                WaveCompleted();
+
+            }
+
+            else
+            {
+                return;
+            }
+
+        }
 
         //If its time to start spawing...
         if (waveCountdown <= 0)
@@ -58,27 +76,7 @@ public class WaveSpawner : MonoBehaviour
             waveCountdown -= Time.deltaTime;
         }
 
-        //Creating a spawn based on when the enemies are all gone. 
-        if (state == SpawnState.WAITING)
-        {
-            //Has the player killed all the enemies?
-            if (!EnemyIsAlive())
-            {
-                //Begin new round
-                WaveCompleted();
-        
-
-            }
-
-            else
-            {
-                return;
-            }
-
-        }
-
-        
-
+       
 
     }
 
@@ -94,6 +92,7 @@ public class WaveSpawner : MonoBehaviour
             nextWave = 0;
             Debug.Log("All Waves Finished. Looping...");
             //I can do other stuff here, such as loading new scenes
+            //So ill just replace the nextWave with another function
 
         }
 
@@ -111,7 +110,7 @@ public class WaveSpawner : MonoBehaviour
         if (searchCountdown <= 0f)
         {
             searchCountdown = 1f;
-            if (GameObject.FindGameObjectsWithTag("enemy").Length == 0)
+            if (GameObject.FindGameObjectWithTag("enemy") == null)
             {
                 return false;
             }

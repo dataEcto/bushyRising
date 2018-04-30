@@ -15,6 +15,8 @@ public class playerAttack : MonoBehaviour {
     void Awake()
     {
         //anim = gameObject.GetComponent<Animator>();
+        //First we are disabling the trigger box
+        //If we don't, it will always be active
         attackTrigger.enabled = false;
     }
 
@@ -29,6 +31,7 @@ public class playerAttack : MonoBehaviour {
 	    if (Input.GetKeyDown("space") && !attacking)
         {
             attacking = true;
+            //Set the timer on cool down
             attackTimer = attackCoolDown;
 
             attackTrigger.enabled = true;

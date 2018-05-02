@@ -38,18 +38,18 @@ public class playerMovement : MonoBehaviour {
             myRigidBody.velocity += new Vector2(speed, 0);
         }
 
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.A))
         {
             myRigidBody.velocity += new Vector2(-speed, 0);
         }
 
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.W))
 
         {
             myRigidBody.velocity += new Vector2(0, speed);
         }
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.S))
         {
             myRigidBody.velocity += new Vector2(0, -speed);
         }

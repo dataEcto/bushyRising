@@ -32,8 +32,18 @@ public class enemyAI : MonoBehaviour {
     public void Damage(int damage)
     {
         currentHealth -= damage;
-        //gameObject.GetComponent<Animation>().Play("Player_RedFlash");
+        
 
     }
 
-}
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "collider")
+        {
+            //load the game over screen
+        }
+
+    }
+
+  }

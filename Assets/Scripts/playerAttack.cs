@@ -10,11 +10,11 @@ public class playerAttack : MonoBehaviour {
 
     public BoxCollider2D attackTrigger;
 
-    //private animator anim;
+    private Animator anim;
     
     void Awake()
     {
-        //anim = gameObject.GetComponent<Animator>();
+        anim = gameObject.GetComponent<Animator>();
         //First we are disabling the trigger box
         //If we don't, it will always be active
         attackTrigger.enabled = false;
@@ -35,6 +35,7 @@ public class playerAttack : MonoBehaviour {
             attackTimer = attackCoolDown;
 
             attackTrigger.enabled = true;
+           
         }
 
         if (attacking)
@@ -50,8 +51,11 @@ public class playerAttack : MonoBehaviour {
                 attacking = false;
                 attackTrigger.enabled = false;
             }
+
+        
         }
 
-        //anim.setBool("isAttacking",true);
-	}
+        anim.SetBool("isAttacking", attacking);
+
+    }
 }

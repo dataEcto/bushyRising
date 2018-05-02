@@ -26,8 +26,8 @@ public class playerMovement : MonoBehaviour {
         float input_x = Input.GetAxisRaw("Horizontal");
         float input_y = Input.GetAxisRaw("Vertical");
 
-       //Its error right now, dont worry about it just watch the video
-        bool isWalking = (Mathf.Abs(input_x) + Mathf.Abs(input_y));
+
+        bool isWalking = (Mathf.Abs(input_x) + Mathf.Abs(input_y)) > 0; 
 
 
         myRigidBody.velocity = new Vector2(0, 0);
@@ -41,6 +41,16 @@ public class playerMovement : MonoBehaviour {
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             myRigidBody.velocity += new Vector2(-speed, 0);
+        }
+
+        anim.SetBool("isWalking", isWalking);
+
+        if (isWalking)
+        {
+            anim.SetFloat("x", input_x);
+            anim.SetFloat("y", input_y);
+
+            transform.position += new Vector3(input_x, input_y, 0).normalized * Time.deltaTime;
         }
 
 

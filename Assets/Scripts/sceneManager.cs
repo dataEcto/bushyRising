@@ -5,11 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class sceneManager : MonoBehaviour {
 
-    float time = 5;
+    float time = 1;
 	// Use this for initialization
 	void Start () {
-		
-	}
+        DontDestroyOnLoad(this.gameObject);
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -18,6 +19,7 @@ public class sceneManager : MonoBehaviour {
         if (time <= 0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            time = 5;
         }
 	}
 }

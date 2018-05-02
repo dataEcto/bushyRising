@@ -4,4 +4,34 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/main.unity
+    guid: 18533584e3b953545bff5f4cbc06eb20
+  - enabled: 1
+    path: Assets/movie1.unity
+    guid: a0c3cd548ab352041ae01fe496d2f104
+  - enabled: 1
+    path: Assets/movie2.unity
+    guid: a5a07cad02d0efb4a8dfabde39f30a97
+  - enabled: 1
+    path: Assets/movie3.unity
+    guid: 3325af91341588241a58a7ff91e77555
+  - enabled: 1
+    path: Assets/movie4.unity
+    guid: 3cec4a6d1d8d91842a457ac382e531ce
+  - enabled: 1
+    path: Assets/movie6.unity
+    guid: 251f25e4a013cd34d90cd85cb4376a42
+  - enabled: 1
+    path: Assets/movie7.unity
+    guid: 46d989fcc11d83d44a4e95485f5f51ba
+  - enabled: 1
+    path: Assets/movie8.unity
+    guid: 48b2f3a42a9fb69449a26256f68fb1fd
+  - enabled: 1
+    path: Assets/movie9.unity
+    guid: 58982776663e49a4e93e28ae86f824b8
+  - enabled: 1
+    path: Assets/movie10.unity
+    guid: c6e54e1baf5271b48866cc27eea4d873

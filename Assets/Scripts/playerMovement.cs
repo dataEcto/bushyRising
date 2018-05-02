@@ -16,7 +16,7 @@ public class playerMovement : MonoBehaviour {
 	void Start () {
         myRigidBody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        speed = 5;
+        speed = 10;
         
 	}
 	
@@ -41,6 +41,17 @@ public class playerMovement : MonoBehaviour {
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             myRigidBody.velocity += new Vector2(-speed, 0);
+        }
+
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+
+        {
+            myRigidBody.velocity += new Vector2(0, speed);
+        }
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            myRigidBody.velocity += new Vector2(0, -speed);
         }
 
         anim.SetBool("isWalking", isWalking);
